@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import  db from "@repo/db/client";
 
 
+export const dynamic = 'force-dynamic';
 
 export const GET = async () => {
     await db.user.create({
