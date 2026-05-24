@@ -1,0 +1,32 @@
+name : Build and Deploy to Docker Hub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs: 
+   build-and-push:
+    runs-on:  ubuntu-latest
+    steps:
+    - name: Check out Repo
+      uses: actions/checkout@v2
+
+    - name: Log in Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        passowrd: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name : Build and Push Docker Image
+      uses : docker/build-push-action@v2
+      with :
+        context: .
+        file: ./docker/Dockerfile.user
+        push: true
+        tags: deepanshujack/cicd:latest
+    
+    - name: Verify with name 
+      run: docker pull deepanshu/cicd:latest
+
+
