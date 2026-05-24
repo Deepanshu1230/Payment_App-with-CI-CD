@@ -4,7 +4,7 @@ WORKDIR  /userapp/src/app
 
 COPY package.json package-lock.json turbo.json tsconfig.json ./
 
-COPY app ./apps
+COPY apps ./apps
 COPY packages ./packages
 
 # Install Dependencies
